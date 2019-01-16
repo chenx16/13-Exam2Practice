@@ -42,8 +42,8 @@ def main():
 
     run_test_init()
     run_test_append_string()
-    # run_test_double()
-    # run_test_shrink()
+    run_test_double()
+    run_test_shrink()
     # run_test_double_then_shrink()
     # run_test_reset()
     # run_test_steal()
@@ -208,8 +208,18 @@ class Box(object):
           #                       contents that did NOT fit]
         """
 
+        s=''
+        self.contents=self.contents+self.contents
+        if len(self.contents)>self.volume:
+            for k in range(self.volume,len(self.contents)):
+                s=s+self.contents[k]
+            self.contents = self.contents[0:self.volume]
+            return s
+        else:
+            return ''
+
         # ---------------------------------------------------------------------
-        # TODO: 4. Implement and test this function.
+        # done: 4. Implement and test this function.
         #     The testing code is already written for you (above).
         # ---------------------------------------------------------------------
         # ---------------------------------------------------------------------
@@ -257,6 +267,12 @@ class Box(object):
         Type hints:
           :type new_volume: int
         """
+        self.volume=new_volume
+        if len(self.contents)>new_volume:
+                for k in range(new_volume):
+                    return self.contents[len(self.contents):new_volume-1]
+        else:
+                return ''
         # ---------------------------------------------------------------------
         # TODO: 5. Implement and test this function.
         #     The testing code is already written for you (above).
