@@ -40,9 +40,9 @@ def main():
     # UN-comment tests as you work the problems.
     ###########################################################################
 
-    run_test_init()
-    run_test_append_string()
-    run_test_double()
+    #run_test_init()
+    #run_test_append_string()
+    #run_test_double()
     run_test_shrink()
     # run_test_double_then_shrink()
     # run_test_reset()
@@ -267,12 +267,17 @@ class Box(object):
         Type hints:
           :type new_volume: int
         """
-        self.volume=new_volume
-        if len(self.contents)>new_volume:
-                for k in range(new_volume):
-                    return self.contents[len(self.contents):new_volume-1]
-        else:
-                return ''
+        a = ''
+        b = ''
+        if new_volume < self.volume:
+            for k in range(new_volume):
+                a = a + self.contents[k]
+            for k in range(self.volume - new_volume ):
+                b = b + self.contents[new_volume + k]
+                self.contents = a
+        self.volume = new_volume
+        return b
+
         # ---------------------------------------------------------------------
         # TODO: 5. Implement and test this function.
         #     The testing code is already written for you (above).
